@@ -6,13 +6,12 @@ export default function Home() {
   const [showFlowers, setShowFlowers] = useState<boolean>(false)
   const [showMessage, setShowMessage] = useState<boolean>(false)
   const [showPhoto, setShowPhoto] = useState<boolean>(false)
-  const [musicPlaying, setMusicPlaying] = useState<boolean>(false)
   const [currentText, setCurrentText] = useState<string>('')
   const [textIndex, setTextIndex] = useState<number>(0)
 
   const loveMessages: string[] = [
     "Sevilay",
-    "Sen benim kainatımın en parlak yıldızına ✨",
+    "Sen benim kainatımın en parlak yıldızısın ✨",
     "Gözlerin bütün yıldızlardan daha güzel 💫", 
     "Seninle her an büyülü ve sonsuz 💖",
     "Seni sonsuza kadar seveceğim aşkım 🌟"
@@ -27,7 +26,6 @@ export default function Home() {
         audio.play().catch(() => {
           // Sessizce başarısız olursa hiçbir şey yapma
         })
-        setMusicPlaying(true)
       }
     }, 1000) // 1 saniye sonra başlat
 
@@ -184,7 +182,7 @@ export default function Home() {
         <div className="mb-8 sm:mb-12 relative">
           <div className="absolute inset-0 blur-xl">
             <h1 className="text-3xl sm:text-5xl lg:text-8xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-pulse-gentle">
-              Kainatın En Parlak Yıldızına
+              Kainatın En Parlak Yıldızı
             </h1>
           </div>
           <h1 
@@ -197,7 +195,7 @@ export default function Home() {
               `
             }}
           >
-            Kainatın En Parlak Yıldızına
+            Kainatın En Parlak Yıldızı
           </h1>
           
           {/* Çevresinde dönen mini yıldızlar - çok yavaş */}
@@ -305,7 +303,7 @@ export default function Home() {
         <div className="relative mb-8 sm:mb-12 group cursor-default">
           <div className="absolute inset-0 blur-2xl">
             <div className="text-6xl sm:text-8xl lg:text-9xl font-bold text-pink-400 animate-pulse-gentle">
-              SEVİLAY
+              SEN 💖
             </div>
           </div>
           <div 
@@ -320,7 +318,7 @@ export default function Home() {
               `
             }}
           >
-            yçb tyyp mua ... 💖
+            SEN 💖
           </div>
           
           {/* Çevresinde kalpler - yumuşak dönüş */}
@@ -360,7 +358,7 @@ export default function Home() {
           >
             <div className="relative bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 rounded-full px-6 sm:px-10 py-3 sm:py-5 text-white font-bold text-base sm:text-lg hover:scale-105 transition-all duration-500 shadow-2xl">
               <i className="fas fa-camera mr-2 sm:mr-3" />
-              <span className="hidden sm:inline">Yengenin foto</span>
+              <span className="hidden sm:inline">Özel Anımızı Gör</span>
               <span className="sm:hidden">Fotoğrafımız</span>
               <div className="absolute inset-0 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl" />
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-pink-400/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500" />
@@ -375,11 +373,11 @@ export default function Home() {
             <div className="relative z-10">
               <div className="text-5xl mb-6 animate-bounce-gentle">🎁</div>
               <h3 className="text-3xl font-bold text-white mb-6 bg-gradient-to-r from-pink-300 to-purple-300 bg-clip-text text-transparent">
-                ÖZÜR DİLERİM
+                Sana Özel Hediyem
               </h3>
               <p className="text-lg text-pink-200 mb-6 leading-relaxed">
                 Bu site, seni ne kadar çok sevdiğimin küçük bir göstergesi...
-          
+                Sen benim evrenimsin, aşkım 🌌
               </p>
               <div className="flex justify-center space-x-3 text-3xl">
                 {['❤️', '💕', '💖', '💗', '💝'].map((heart, i) => (
@@ -431,7 +429,7 @@ export default function Home() {
                 Sevilay 💖
               </h3>
               <p className="text-pink-300 text-sm sm:text-lg mb-2">
-                Dünyanın en tatlı bebişi
+                En güzel fotoğrafın burada!
               </p>
               <p className="text-white/60 text-xs sm:text-sm">
                 (public/sevilay.jpg olarak fotoğrafını ekle)
