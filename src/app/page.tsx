@@ -385,7 +385,7 @@ export default function Home() {
             <div className="relative bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 rounded-full px-6 sm:px-10 py-3 sm:py-5 text-white font-bold text-base sm:text-lg hover:scale-105 transition-all duration-500 shadow-2xl">
               <i className="fas fa-camera mr-2 sm:mr-3" />
               <span className="hidden sm:inline">Yengenin foto 😉</span>
-              <span className="sm:hidden">Fotoğrafımız</span>
+              <span className="sm:hidden">Yengenin foto</span>
               <div className="absolute inset-0 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl" />
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-pink-400/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500" />
             </div>
