@@ -17,18 +17,31 @@ export default function Home() {
     "Seni sonsuza kadar seveceğim aşkım 🌟"
   ]
 
-  // Otomatik müzik başlatma
+  // Otomatik müzik başlatma + User etkileşimi
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const startMusic = () => {
       const audio = document.getElementById('backgroundMusic') as HTMLAudioElement
       if (audio) {
-        audio.volume = 0.3 // Ses seviyesini düşür
+        audio.volume = 0.3
         audio.play().catch(() => {
-          // Sessizce başarısız olursa hiçbir şey yapma
+          // İlk etkileşimde başlat
+          const playOnClick = () => {
+            audio.play()
+            document.removeEventListener('click', playOnClick)
+            document.removeEventListener('touchstart', playOnClick)
+          }
+          document.addEventListener('click', playOnClick)
+          document.addEventListener('touchstart', playOnClick)
         })
       }
-    }, 1000) // 1 saniye sonra başlat
+    }
 
+    // Hemen başlat
+    startMusic()
+    
+    // 2 saniye sonra tekrar dene
+    const timer = setTimeout(startMusic, 2000)
+    
     return () => clearTimeout(timer)
   }, [])
 
@@ -439,11 +452,16 @@ export default function Home() {
         </div>
       )}
 
-      {/* Arka plan müziği - Çalışan versiyon */}
-      <audio id="backgroundMusic" loop preload="metadata">
+      {/* Arka plan müziği - Güçlü versiyon */}
+      <audio 
+        id="backgroundMusic" 
+        loop 
+        preload="auto"
+        playsInline
+        muted={false}
+      >
         <source src="/romantic-music.mp3" type="audio/mpeg" />
-        <source src="/romantic-music.ogg" type="audio/ogg" />
-        <source src="/romantic-music.wav" type="audio/wav" />
+        <source src="/love-song.mp3" type="audio/mpeg" />
         Tarayıcınız ses dosyasını desteklemiyor.
       </audio>
 
