@@ -10,39 +10,52 @@ export default function Home() {
   const [textIndex, setTextIndex] = useState<number>(0)
 
   const loveMessages: string[] = [
-    "Sevilay",
+    "yçb tyyb mua ...",
     "Sen benim kainatımın en parlak yıldızısın ✨",
     "Gözlerin bütün yıldızlardan daha güzel 💫", 
     "Seninle her an büyülü ve sonsuz 💖",
     "Seni sonsuza kadar seveceğim aşkım 🌟"
   ]
 
-  // Otomatik müzik başlatma + User etkileşimi
+  // Otomatik müzik başlatma - Güçlü versiyon
   useEffect(() => {
     const startMusic = () => {
       const audio = document.getElementById('backgroundMusic') as HTMLAudioElement
       if (audio) {
-        audio.volume = 0.3
-        audio.play().catch(() => {
-          // İlk etkileşimde başlat
-          const playOnClick = () => {
-            audio.play()
-            document.removeEventListener('click', playOnClick)
-            document.removeEventListener('touchstart', playOnClick)
-          }
-          document.addEventListener('click', playOnClick)
-          document.addEventListener('touchstart', playOnClick)
-        })
+        audio.volume = 0.4
+        audio.muted = false
+        
+        // Hemen çalmaya çalış
+        const playAttempt = audio.play()
+        if (playAttempt !== undefined) {
+          playAttempt.catch(() => {
+            // İlk etkileşimde çal
+            const playOnInteraction = () => {
+              audio.play()
+              document.removeEventListener('click', playOnInteraction)
+              document.removeEventListener('touchstart', playOnInteraction)
+              document.removeEventListener('keydown', playOnInteraction)
+            }
+            document.addEventListener('click', playOnInteraction)
+            document.addEventListener('touchstart', playOnInteraction)
+            document.addEventListener('keydown', playOnInteraction)
+          })
+        }
       }
     }
 
     // Hemen başlat
     startMusic()
     
-    // 2 saniye sonra tekrar dene
-    const timer = setTimeout(startMusic, 2000)
+    // 1 saniye sonra tekrar dene
+    const timer1 = setTimeout(startMusic, 1000)
+    // 3 saniye sonra tekrar dene
+    const timer2 = setTimeout(startMusic, 3000)
     
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(timer1)
+      clearTimeout(timer2)
+    }
   }, [])
 
   // Typewriter efekti
@@ -195,7 +208,7 @@ export default function Home() {
         <div className="mb-8 sm:mb-12 relative">
           <div className="absolute inset-0 blur-xl">
             <h1 className="text-3xl sm:text-5xl lg:text-8xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-pulse-gentle">
-              Kainatın En Parlak Yıldızı
+              Kainatın En Parlak Yıldızına
             </h1>
           </div>
           <h1 
@@ -312,11 +325,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* SEN yazısı - Responsive */}
+        {/* SEVİLAY yazısı - Responsive */}
         <div className="relative mb-8 sm:mb-12 group cursor-default">
           <div className="absolute inset-0 blur-2xl">
             <div className="text-6xl sm:text-8xl lg:text-9xl font-bold text-pink-400 animate-pulse-gentle">
-              SEN 💖
+              yçb tyyb mua ... 💖
             </div>
           </div>
           <div 
@@ -331,7 +344,7 @@ export default function Home() {
               `
             }}
           >
-            SEN 💖
+            yçb tyyb mua ... 💖
           </div>
           
           {/* Çevresinde kalpler - yumuşak dönüş */}
@@ -371,7 +384,7 @@ export default function Home() {
           >
             <div className="relative bg-gradient-to-r from-pink-500 via-purple-600 to-blue-500 rounded-full px-6 sm:px-10 py-3 sm:py-5 text-white font-bold text-base sm:text-lg hover:scale-105 transition-all duration-500 shadow-2xl">
               <i className="fas fa-camera mr-2 sm:mr-3" />
-              <span className="hidden sm:inline">Özel Anımızı Gör</span>
+              <span className="hidden sm:inline">Yengenin foto 😉</span>
               <span className="sm:hidden">Fotoğrafımız</span>
               <div className="absolute inset-0 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl" />
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-pink-400/30 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500" />
@@ -386,11 +399,11 @@ export default function Home() {
             <div className="relative z-10">
               <div className="text-5xl mb-6 animate-bounce-gentle">🎁</div>
               <h3 className="text-3xl font-bold text-white mb-6 bg-gradient-to-r from-pink-300 to-purple-300 bg-clip-text text-transparent">
-                Sana Özel Hediyem
+                Özür dilerim
               </h3>
               <p className="text-lg text-pink-200 mb-6 leading-relaxed">
                 Bu site, seni ne kadar çok sevdiğimin küçük bir göstergesi...
-                Sen benim evrenimsin, aşkım 🌌
+                iyiki varsın
               </p>
               <div className="flex justify-center space-x-3 text-3xl">
                 {['❤️', '💕', '💖', '💗', '💝'].map((heart, i) => (
@@ -439,10 +452,10 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-white text-lg sm:text-2xl mb-3 sm:mb-4 font-bold">
-                Sevilay 💖
+                bebek sevilay 💖
               </h3>
               <p className="text-pink-300 text-sm sm:text-lg mb-2">
-                En güzel fotoğrafın burada!
+                Dünyanın en tatlı bebişi
               </p>
               <p className="text-white/60 text-xs sm:text-sm">
                 (public/sevilay.jpg olarak fotoğrafını ekle)
@@ -452,12 +465,13 @@ export default function Home() {
         </div>
       )}
 
-      {/* Arka plan müziği - Güçlü versiyon */}
+      {/* Arka plan müziği - Otomatik çalan versiyon */}
       <audio 
         id="backgroundMusic" 
         loop 
         preload="auto"
         playsInline
+        autoPlay
         muted={false}
       >
         <source src="/romantic-music.mp3" type="audio/mpeg" />
@@ -465,26 +479,62 @@ export default function Home() {
         Tarayıcınız ses dosyasını desteklemiyor.
       </audio>
 
-      {/* CSS Animasyonları - Soft Ambiyans */}
+      {/* CSS Animasyonları - Akan Nehir Efekti */}
       <style jsx>{`
-        @keyframes color-shift {
-          0% { filter: hue-rotate(0deg) brightness(0.8); }
-          25% { filter: hue-rotate(15deg) brightness(0.9); }
-          50% { filter: hue-rotate(30deg) brightness(1); }
-          75% { filter: hue-rotate(15deg) brightness(0.9); }
-          100% { filter: hue-rotate(0deg) brightness(0.8); }
+        @keyframes river-flow {
+          0% { 
+            background-position: 0% 0%;
+            filter: hue-rotate(0deg) brightness(0.7);
+          }
+          50% { 
+            background-position: 100% 100%;
+            filter: hue-rotate(10deg) brightness(0.8);
+          }
+          100% { 
+            background-position: 200% 0%;
+            filter: hue-rotate(0deg) brightness(0.7);
+          }
         }
         
-        @keyframes breathing {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 0.6; transform: scale(1.05); }
+        @keyframes wave-flow {
+          0% { 
+            background-position: 0% 0%;
+            opacity: 0.2;
+          }
+          50% { 
+            background-position: 100% 50%;
+            opacity: 0.4;
+          }
+          100% { 
+            background-position: 200% 100%;
+            opacity: 0.2;
+          }
         }
         
-        @keyframes gentle-float {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          25% { transform: translateY(-20px) translateX(10px); }
-          50% { transform: translateY(-10px) translateX(20px); }
-          75% { transform: translateY(-30px) translateX(10px); }
+        @keyframes stream-flow {
+          0% { 
+            background-position: 0% 50%;
+            opacity: 0.1;
+          }
+          50% { 
+            background-position: 50% 0%;
+            opacity: 0.3;
+          }
+          100% { 
+            background-position: 100% 50%;
+            opacity: 0.1;
+          }
+        }
+        
+        @keyframes gentle-pulse {
+          0%, 100% { 
+            opacity: 0.3; 
+            transform: scale(1); 
+          }
+          50% { 
+            opacity: 0.6; 
+            transform: scale(1.02); 
+          }
         }
         
         @keyframes petal-dance {
@@ -598,19 +648,29 @@ export default function Home() {
           75% { transform: translateY(-20px) rotate(135deg); }
         }
         
-        /* Soft Animation Classes */
+        @keyframes spin-very-slow {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        /* Akan Nehir Animation Classes */
+        .animate-river-flow { animation: river-flow 40s ease-in-out infinite; }
+        .animate-wave-flow { animation: wave-flow 30s ease-in-out infinite; }
+        .animate-stream-flow { animation: stream-flow 25s ease-in-out infinite; }
+        .animate-gentle-pulse { animation: gentle-pulse 15s ease-in-out infinite; }
+        
+        /* Çiçek Animation Classes */
         .animate-petal-dance { animation: petal-dance 4s ease-in-out infinite; }
         .animate-leaf-fall { animation: leaf-fall 10s ease-in-out infinite; }
-        .animate-color-shift { animation: color-shift 20s ease-in-out infinite; }
-        .animate-breathing { animation: breathing 12s ease-in-out infinite; }
-        .animate-gentle-float { animation: gentle-float 25s ease-in-out infinite; }
-        .animate-gentle-float-reverse { animation: gentle-float-reverse 30s ease-in-out infinite; }
+        
+        /* Orbital Animation Classes */
         .animate-orbit-slow { animation: orbit-slow 120s linear infinite; }
         .animate-orbit-ultra-slow { animation: orbit-ultra-slow 180s linear infinite; }
         .animate-orbit-reverse { animation: orbit-reverse 150s linear infinite; }
         .animate-twinkle-gentle { animation: twinkle-gentle 8s ease-in-out infinite; }
         .animate-sway-gentle { animation: sway-gentle 6s ease-in-out infinite; }
         .animate-heartbeat-gentle { animation: heartbeat-gentle 5s ease-in-out infinite; }
+        .animate-spin-very-slow { animation: spin-very-slow 40s linear infinite; }
         
         /* Existing animations with softer timing */
         .animate-fade-in-up { animation: fade-in-up 1.5s ease-out; }
