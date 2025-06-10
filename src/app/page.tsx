@@ -221,7 +221,7 @@ export default function Home() {
               `
             }}
           >
-            Kainatın En Parlak Yıldızı
+            Kainatın En Parlak Yıldızına
           </h1>
           
           {/* Çevresinde dönen mini yıldızlar - çok yavaş */}
